@@ -1,13 +1,13 @@
-﻿using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Public.Descriptors;
+﻿using Populates.Extensions;
+using Populates.Public.Descriptors;
 using System.Text.RegularExpressions;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant;
-using static Infrastructure.Facades.Populates.Definations.PopulateOptions;
-using static Infrastructure.Facades.Populates.Extensions.RegexExtension;
+using static Populates.Definations.PopulateConstant;
+using static Populates.Definations.PopulateOptions;
+using static Populates.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Infrastructure.Facades.Populates.Internal;
+namespace Populates.Internal;
 
 public class FilterRequest
 {

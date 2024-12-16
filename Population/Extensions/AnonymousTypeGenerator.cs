@@ -1,16 +1,16 @@
 ﻿using Humanizer;
-using Infrastructure.Facades.Populates.Exceptions;
+using Populates.Exceptions;
 using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 
-namespace Infrastructure.Facades.Populates.Extensions;
+namespace Populates.Extensions;
 
 public static class AnonymousTypeGenerator
 {
-    private const string TypeAlias = "Infrastructure.Facades.Common.ProjectionMappers.AnonymousType";
-    private const string AssemblyAlias = "Infrastructure.Facades.Common.ProjectionMappers.AnonymousAssembly, Version=1.0.0.0";
+    private const string TypeAlias = "Common.ProjectionMappers.AnonymousType";
+    private const string AssemblyAlias = "Common.ProjectionMappers.AnonymousAssembly, Version=1.0.0.0";
     private const MethodAttributes GetSetAttr = MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
     private static readonly CustomAttributeBuilder CompilerGeneratedAttributeBuilder = new(typeof(CompilerGeneratedAttribute).GetConstructor(Type.EmptyTypes)!, []);
 

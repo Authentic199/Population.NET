@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
-using Infrastructure.Facades.Populates.Builders;
-using Infrastructure.Facades.Populates.Internal.Projection;
+using Populates.Builders;
+using Populates.Internal.Projection;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.Populates.Extensions;
+namespace Populates.Extensions;
 
 internal static class ProjectionUtilities
 {

@@ -1,7 +1,7 @@
-﻿using Infrastructure.Facades.Populates.Internal.Projection;
+﻿using Populates.Internal.Projection;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.Populates.Internal.PrimitiveMappers.Mappers;
+namespace Populates.Internal.PrimitiveMappers.Mappers;
 
 internal class StringPrimitiveMapper : IPrimitiveMapper
 {

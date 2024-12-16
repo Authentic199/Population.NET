@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Infrastructure.Facades.Common.Extensions;
-using Infrastructure.Facades.Populates.Public.Queries;
-using static Infrastructure.Facades.Populates.Extensions.MethodExtension;
-using static Infrastructure.Facades.Populates.Internal.Queries.CompileExpression;
+using Common.Extensions;
+using Populates.Public.Queries;
+using static Populates.Extensions.MethodExtension;
+using static Populates.Internal.Queries.CompileExpression;
 
-namespace Infrastructure.Facades.Populates;
+namespace Populates;
 
 public static class CompileQueryExtension
 {

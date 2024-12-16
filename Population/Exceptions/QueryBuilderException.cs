@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Facades.Populates.Exceptions
+﻿namespace Populates.Exceptions
 {
     [Serializable]
     public class QueryBuilderException : Exception

@@ -1,9 +1,9 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Infrastructure.Facades.Populates.Extensions;
+﻿using Populates.Definations;
+using Populates.Extensions;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Infrastructure.Facades.Populates.Visitors;
+namespace Populates.Visitors;
 
 /// <summary>
 /// A visitor that modifies "Select" and "SelectMany" method calls in an expression tree to replace the accessed member with a specified expression.

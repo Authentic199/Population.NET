@@ -1,11 +1,11 @@
 ﻿using AutoMapper.Internal;
-using Infrastructure.Facades.Populates.Builders;
-using Infrastructure.Facades.Populates.Extensions;
+using Populates.Builders;
+using Populates.Extensions;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using DictionaryParameters = System.Collections.Generic.IDictionary<string, object>;
 
-namespace Infrastructure.Facades.Populates.Visitors;
+namespace Populates.Visitors;
 
 internal abstract class QueryParameterVisitor : ExpressionVisitor
 {

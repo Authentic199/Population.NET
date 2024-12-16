@@ -1,12 +1,12 @@
-﻿using Infrastructure.Facades.Populates.Builders;
-using Infrastructure.Facades.Populates.Exceptions;
+﻿using Populates.Builders;
+using Populates.Exceptions;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant.MethodAlias;
-using static Infrastructure.Facades.Populates.Definations.PopulateOptions;
+using static Populates.Definations.PopulateConstant;
+using static Populates.Definations.PopulateConstant.MethodAlias;
+using static Populates.Definations.PopulateOptions;
 
-namespace Infrastructure.Facades.Populates.Extensions;
+namespace Populates.Extensions;
 
 internal static class MethodExtension
 {

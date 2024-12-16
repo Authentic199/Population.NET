@@ -1,7 +1,7 @@
-﻿using Infrastructure.Facades.Populates.Public.Descriptors;
+﻿using Populates.Public.Descriptors;
 using System.Collections.Immutable;
 
-namespace Infrastructure.Facades.Populates.Internal;
+namespace Populates.Internal;
 
 public static class OperatorManager
 {

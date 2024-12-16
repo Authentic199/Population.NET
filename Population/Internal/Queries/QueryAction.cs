@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Facades.Populates.Internal.Queries;
+﻿namespace Populates.Internal.Queries;
 
 public enum QueryAction
 {

@@ -1,13 +1,13 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Infrastructure.Facades.Populates.Exceptions;
-using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Internal.Projection;
-using Infrastructure.Facades.Populates.Visitors;
+﻿using Populates.Definations;
+using Populates.Exceptions;
+using Populates.Extensions;
+using Populates.Internal.Projection;
+using Populates.Visitors;
 using System.Linq.Expressions;
 using System.Reflection;
 using DictionaryParameters = System.Collections.Generic.IDictionary<string, object>;
 
-namespace Infrastructure.Facades.Populates.Builders;
+namespace Populates.Builders;
 
 internal static class ExpressionBuilder
 {

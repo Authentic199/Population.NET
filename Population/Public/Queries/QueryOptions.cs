@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Facades.Populates.Public.Queries;
+﻿namespace Populates.Public.Queries;
 
 public class QueryOptions
 {

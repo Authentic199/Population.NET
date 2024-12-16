@@ -1,8 +1,8 @@
-﻿using Infrastructure.Facades.Populates.Builders;
-using Infrastructure.Facades.Populates.Public;
+﻿using Populates.Builders;
+using Populates.Public;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.Populates.Internal.Queries;
+namespace Populates.Internal.Queries;
 
 internal class QueryExpression
 {

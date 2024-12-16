@@ -1,17 +1,15 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Infrastructure.Facades.Populates.Extensions;
+﻿using Populates.Definations;
+using Populates.Extensions;
 using Microsoft.Extensions.Caching.Memory;
-using Nest;
 using Population.Public;
 using Population.Public.Attributes;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq.Expressions;
 using System.Reflection;
 using TraversalBag = System.Collections.Generic.Dictionary<System.Reflection.PropertyInfo, int>;
-using TypeBag = System.ValueTuple<System.Type, Infrastructure.Facades.Populates.Public.MemberPath>;
+using TypeBag = System.ValueTuple<System.Type, Populates.Public.MemberPath>;
 
-namespace Infrastructure.Facades.Populates.Public;
+namespace Populates.Public;
 
 public static class PropertyAnalyzer
 {
@@ -129,46 +127,6 @@ public static class PropertyAnalyzer
 
             return result;
         }
-    }
-
-    /// <summary>
-    /// Recursively retrieves path information for a series of nested properties based on their names.
-    /// </summary>
-    /// <param name="baseType">The base type from which to start resolving the property path.</param>
-    /// <param name="propertyNames">
-    /// A dot-separated string representing the sequence of property names to navigate through.
-    /// </param>
-    /// <param name="parameter">
-    /// An optional <see cref="Expression"/> parameter representing the base object. If not provided, a new parameter expression
-    /// for the <paramref name="baseType"/> is created.
-    /// </param>
-    /// <returns>
-    /// A <see cref="PathInfo"/> object containing information about the resolved property path, or <c>null</c> if the path cannot be resolved.
-    /// </returns>
-    /// <remarks>
-    /// This method splits the <paramref name="propertyNames"/> string by dots to navigate through nested properties of the 
-    /// specified <paramref name="baseType"/>. It uses reflection to resolve each property and constructs an expression 
-    /// to represent the path.
-    /// <para>
-    /// If the entire property path is resolved successfully, the method returns a <see cref="PathInfo"/> object encapsulating 
-    /// the details of the path. If any part of the path is invalid or cannot be resolved, the method returns <c>null</c>.
-    /// </para>
-    /// </remarks>
-    public static PathInfo? GetPathInfoRecursive(this Type baseType, string propertyNames, Expression? parameter = default)
-    {
-        parameter ??= Expression.Parameter(baseType, "y");
-        string[] parts = propertyNames.Split('.', PopulateOptions.TrimSplitOptions);
-        if (parts.Length == 0
-            || baseType.GetProperty(parts[0], PopulateOptions.InstanceFlags) is not PropertyInfo propertyInfo)
-        {
-            return default;
-        }
-
-        MemberExpression memberAccess = Expression.Property(parameter, propertyInfo);
-
-        return parts.Length == 1
-            ? new(CallSuffixKeywork(memberAccess, propertyInfo), propertyInfo)
-            : propertyInfo.PropertyType.GetPathInfoRecursive(string.Join(PopulateConstant.SpecialCharacter.Dot, parts.Skip(1)), memberAccess);
     }
 
     /// <summary>
@@ -307,36 +265,5 @@ public static class PropertyAnalyzer
         }
 
         return metaProperties;
-    }
-
-    /// <summary>
-    /// Creates an expression that appends a suffix to a string property using the <see cref="SuffixExtensions.Suffix"/> method.
-    /// </summary>
-    /// <param name="memberAccess">The <see cref="MemberExpression"/> representing access to the property.</param>
-    /// <param name="propertyInfo">The <see cref="PropertyInfo"/> of the property being accessed.</param>
-    /// <returns>
-    /// An <see cref="Expression"/> that calls the <see cref="SuffixExtensions.Suffix"/> method if the property is of type <see cref="string"/>;
-    /// otherwise, returns the original <paramref name="memberAccess"/> expression.
-    /// </returns>
-    /// <remarks>
-    /// This method checks whether the specified property is of type <see cref="string"/>. If it is, it attempts to retrieve
-    /// the <see cref="SuffixExtensions.Suffix"/> method and creates a call expression to append the suffix "keyword" to the property.
-    /// If the method cannot be found or the property is not a string, the original expression is returned unchanged.
-    /// </remarks>
-    private static Expression CallSuffixKeywork(MemberExpression memberAccess, PropertyInfo propertyInfo)
-    {
-        if (propertyInfo.PropertyType != typeof(string))
-        {
-            return memberAccess;
-        }
-
-        MethodInfo? method = typeof(SuffixExtensions).GetMethod(nameof(SuffixExtensions.Suffix), PopulateOptions.StaticFlags, [typeof(object), typeof(string)]);
-
-        if (method is null)
-        {
-            return memberAccess;
-        }
-
-        return Expression.Call(method, memberAccess, Expression.Constant("keyword"));
     }
 }

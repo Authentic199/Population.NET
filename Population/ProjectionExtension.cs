@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Public.Descriptors;
-using static Infrastructure.Facades.Populates.Extensions.MethodExtension;
+using Populates.Extensions;
+using Populates.Public.Descriptors;
+using static Populates.Extensions.MethodExtension;
 using DictionaryParameters = System.Collections.Generic.IDictionary<string, object>;
 
-namespace Infrastructure.Facades.Populates;
+namespace Populates;
 
 public static class ProjectionExtension
 {

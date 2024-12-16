@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.Populates.Visitors;
+namespace Populates.Visitors;
 
 public class ReplaceParameterVisitor : ExpressionVisitor
 {

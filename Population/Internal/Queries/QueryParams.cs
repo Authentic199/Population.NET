@@ -1,13 +1,13 @@
-﻿using Infrastructure.Facades.Populates.Builders;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
+using Population.Builders;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
-using static Infrastructure.Facades.Populates.Definations.PopulateOptions;
-using static Infrastructure.Facades.Populates.Extensions.RegexExtension;
+using static Populates.Definations.PopulateOptions;
+using static Populates.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.Dictionary<string, string>;
 
-namespace Infrastructure.Facades.Populates.Internal.Queries;
+namespace Populates.Internal.Queries;
 
 public class QueryParams
 {

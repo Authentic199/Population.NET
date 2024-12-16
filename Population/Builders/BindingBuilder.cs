@@ -1,17 +1,17 @@
-﻿using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Internal;
-using Infrastructure.Facades.Populates.Internal.Queries;
+﻿using Populates.Extensions;
+using Populates.Internal;
+using Populates.Internal.Queries;
 using Population.Extensions;
 using Population.Public.Descriptors;
 using System.Collections;
 using System.Reflection;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant;
-using static Infrastructure.Facades.Populates.Definations.PopulateOptions;
-using static Infrastructure.Facades.Populates.Internal.Queries.QueryParams;
+using static Populates.Definations.PopulateConstant;
+using static Populates.Definations.PopulateOptions;
+using static Populates.Internal.Queries.QueryParams;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Infrastructure.Facades.Populates.Builders;
+namespace Population.Builders;
 
 public class BindingBuilder
 {
@@ -69,7 +69,7 @@ public class BindingBuilder
     /// </returns>
     /// <remarks>
     /// This method determines the <see cref="Action"/> to perform based on the input string.
-    /// It uses the <seealso cref="QueryParams.DetectAction"/> method to identify the type of action
+    /// It uses the <seealso cref="DetectAction"/> method to identify the type of action
     /// and then returns the corresponding action delegate for performing the action on an object and its property. Supported actions include sorting,
     /// filtering, searching, populating, and paginating. If the input does not match any supported action, a <seealso cref="NotSupportedException"/> is thrown.
     /// </remarks>

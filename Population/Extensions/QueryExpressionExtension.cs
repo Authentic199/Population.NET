@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Infrastructure.Facades.Common.Extensions;
+namespace Common.Extensions;
 
 public static class QueryExpressionExtension
 {

@@ -1,11 +1,8 @@
-﻿using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Public;
-using Infrastructure.Facades.Populates.Public.Descriptors;
-using Nest;
-using Population.Public.Attributes;
-using System.Linq.Expressions;
+﻿using Populates.Extensions;
+using Populates.Public;
+using Populates.Public.Descriptors;
 
-namespace Infrastructure.Facades.Populates.Builders;
+namespace Populates.Builders;
 
 internal static class SearchBuilder
 {
@@ -42,44 +39,6 @@ internal static class SearchBuilder
             }
 
             yield return new FilterDescriptor(memberPath.Value, keyword, NextLogicalOperator.Or, CompareOperator.Contains, nameof(QueryContext.Search));
-        }
-    }
-
-    internal static QueryContainer BuildSearchQuery<TInferDocument>(this SearchDescriptor? search)
-        where TInferDocument : class
-    {
-        QueryContainerDescriptor<TInferDocument> searchQuery = new();
-        if (search is null || search.Keyword is null)
-        {
-            return searchQuery;
-        }
-
-        ParameterExpression parameter = Expression.Parameter(typeof(TInferDocument), "x");
-        search.Fields ??= [.. typeof(TInferDocument).GetPropertyRecursiveWithDeep(1, typeof(NotSearchAttribute))];
-
-        return searchQuery.QueryString(
-            qs =>
-                qs.Fields(
-                    fs =>
-                        fs.Fields(SearchFields<TInferDocument>(search.Fields, parameter))
-                    )
-                  .Query($"*{search.Keyword.RegexReplace(RegexExtension.SpecialCharacterPattern, "\\$0")}*")
-                );
-    }
-
-    private static IEnumerable<Field> SearchFields<TInferDocument>(IEnumerable<string> fields, ParameterExpression parameter)
-    {
-        foreach (string searchField in fields)
-        {
-            if (typeof(TInferDocument).GetPathInfoRecursive(searchField) is not PathInfo pathInfo
-                || pathInfo.DestinationInfo.ResolveMemberType() is not Type memberType
-                || (!pathInfo.DestinationInfo.HasAttribute<KeywordAttribute>() && memberType != typeof(string) && memberType.IsGuid())
-                )
-            {
-                continue;
-            }
-
-            yield return new Field(Expression.Lambda(pathInfo.PathMap, parameter).ToObject<TInferDocument>());
         }
     }
 }

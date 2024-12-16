@@ -1,16 +1,17 @@
 ﻿using AutoMapper;
-using Infrastructure.Facades.Populates.Builders;
-using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Mappers;
-using Infrastructure.Facades.Populates.Public;
-using Infrastructure.Facades.Populates.Public.Descriptors;
-using Infrastructure.Facades.Populates.Public.Queries;
+using Populates.Builders;
+using Populates.Extensions;
+using Populates.Mappers;
+using Populates.Public;
+using Populates.Public.Descriptors;
+using Populates.Public.Queries;
 using Microsoft.EntityFrameworkCore;
+using Population.Builders;
 using Population.Public;
 using Population.Public.Descriptors;
 using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.Populates.Internal.Queries;
+namespace Populates.Internal.Queries;
 
 internal sealed class CompileExpression : QueryExpression
 {

@@ -1,15 +1,15 @@
-﻿using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Public;
+﻿using Populates.Extensions;
+using Populates.Public;
 using Population.Public;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant;
-using static Infrastructure.Facades.Populates.Definations.PopulateConstant.SpecialCharacter;
-using static Infrastructure.Facades.Populates.Definations.PopulateOptions;
-using static Infrastructure.Facades.Populates.Extensions.RegexExtension;
+using static Populates.Definations.PopulateConstant;
+using static Populates.Definations.PopulateConstant.SpecialCharacter;
+using static Populates.Definations.PopulateOptions;
+using static Populates.Extensions.RegexExtension;
 
-namespace Infrastructure.Facades.Populates.Internal.Projection;
+namespace Populates.Internal.Projection;
 
 internal sealed class PopulateAnalyzer : IEquatable<PopulateAnalyzer>
 {

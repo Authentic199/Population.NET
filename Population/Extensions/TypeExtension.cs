@@ -1,7 +1,7 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Infrastructure.Facades.Populates.Exceptions;
-using Infrastructure.Facades.Populates.Internal;
-using Infrastructure.Facades.Populates.Public.Descriptors;
+﻿using Populates.Definations;
+using Populates.Exceptions;
+using Populates.Internal;
+using Populates.Public.Descriptors;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -10,7 +10,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 
-namespace Infrastructure.Facades.Populates.Extensions;
+namespace Populates.Extensions;
 
 internal static class TypeExtension
 {

@@ -1,11 +1,6 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-using System.Web;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Facades.Common.Extensions;
+namespace Common.Extensions;
 
 public static class PaginationExtension
 {
@@ -78,85 +73,4 @@ public class PageInfo
     public bool HasNext => Current < TotalPages;
 
     public bool HasPrevious => Current > 1 && Current <= TotalPages;
-}
-
-public class QueryContainer : IValidatableObject
-{
-    /// <summary>
-    /// filter data by operator($eq, $null, $in, $gt, $lt, $lte, $gte, $btw, $ilike, $sw) ex: { filter.propName : "$eq:mxm" }
-    /// </summary>
-    [ModelBinder(BinderType = typeof(CustomFilterBinder))]
-    public Dictionary<string, List<string>?>? Filter { get; set; }
-
-    /// <summary>
-    /// Number elements on a page.
-    /// </summary>
-    public int PageSize { get; set; } = int.MaxValue / 2;
-
-    /// <summary>
-    /// Pages number to take out of the total pages.
-    /// </summary>
-    public int Current { get; set; } = 1;
-
-    /// <summary>
-    /// Search field. Ex: '["Name","Relatives.Name"]'.
-    /// </summary>
-    public string[]? SearchFields { get; set; }
-
-    /// <summary>
-    /// Search keyword. Ex: 'Magnus Maximus'.
-    /// </summary>
-    public string? SearchKeyword { get; set; }
-
-    /// <summary>
-    /// Sort query string. Ex: 'Name desc,Region.Name'.
-    /// </summary>
-    public string? SortQuery { get; set; }
-
-    public List<string>? PopulateKeys { get; set; } = [PopulateConstant.SpecialCharacter.PoundSign];
-
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        if (PageSize <= 0 || PageSize > int.MaxValue / 2)
-        {
-            yield return new ValidationResult(
-                $"{nameof(PageSize)}Invalid",
-                [nameof(PageSize)]
-            );
-        }
-
-        if (Current <= 0 || Current > int.MaxValue / 2)
-        {
-            yield return new ValidationResult(
-                $"{nameof(PageSize)}Invalid",
-                [nameof(PageSize)]
-            );
-        }
-    }
-}
-
-public class CustomFilterBinder : IModelBinder
-{
-    public Task BindModelAsync(ModelBindingContext bindingContext)
-    {
-        ArgumentNullException.ThrowIfNull(bindingContext);
-
-        if (bindingContext.HttpContext.Request.QueryString.HasValue)
-        {
-            const string filterKey = nameof(QueryContainer.Filter);
-            Dictionary<string, List<string?>> filterQueries = bindingContext.HttpContext.Request.QueryString.Value![1..]
-                .Split('&')
-                .Where(x => x.StartsWith(filterKey, StringComparison.OrdinalIgnoreCase))
-                .GroupBy(x => x.Split('=')[0])
-                .ToDictionary(x => x.Key[(filterKey.Length + 1)..], x => x.Select(x =>
-                {
-                    string[] compareValue = x.Split('=');
-                    return compareValue.Length > 1 ? HttpUtility.UrlDecode(compareValue.GetValue(1)?.ToString()) : string.Empty;
-                }).ToList());
-
-            bindingContext.Result = ModelBindingResult.Success(filterQueries);
-        }
-
-        return Task.CompletedTask;
-    }
 }

@@ -3,23 +3,40 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-	<PackageId>Population.NET-071099</PackageId>
-	<Version>1.0.0</Version>
+	<PackageId>Population.NET</PackageId>
+	<Version>1.0.1</Version>
 	<Authors>Authentic</Authors>
     <Nullable>enable</Nullable>
     <Title>Population.NET</Title>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+	<Description>Population.NET is a powerful library for .NET, inspired by the Populate feature of Strapi in Node.js. Population.NET simplifies querying complex data sources by automatically loading relationships between objects. In addition to its core populate functionality, the library integrates robust tools such as filtering, searching, sorting, and paging, enabling you to optimize data retrieval processes. With Population.NET, you can effortlessly build rich and efficient APIs to meet the demands of modern applications.</Description>
+	<PackageProjectUrl>https://github.com/chanh-am-me/Population.NET</PackageProjectUrl>
+	<PackageIcon>icon.png</PackageIcon>
+	<RepositoryUrl>https://github.com/chanh-am-me/Population.NET</RepositoryUrl>
+	<PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+    <ItemGroup>
+	    <None Include="..\LICENSE">
+	      <Pack>True</Pack>
+	      <PackagePath>\</PackagePath>
+	    </None>
+	    <None Include="..\README.md" Pack="true" PackagePath="" Visible="False" />
+	    <None Include="..\icon.png">
+	      <Pack>True</Pack>
+	      <PackagePath>\</PackagePath>
+	    </None>
+    </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Humanizer" Version="2.14.1" />
     <PackageReference Include="MassTransit" Version="8.3.3" />
-    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NEST" Version="7.17.5" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
   </ItemGroup>

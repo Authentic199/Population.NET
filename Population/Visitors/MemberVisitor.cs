@@ -1,10 +1,10 @@
-﻿using Infrastructure.Facades.Populates.Exceptions;
-using Infrastructure.Facades.Populates.Extensions;
-using Infrastructure.Facades.Populates.Internal.Projection;
+﻿using Populates.Exceptions;
+using Populates.Extensions;
+using Populates.Internal.Projection;
 using System.Linq.Expressions;
-using static Infrastructure.Facades.Populates.Extensions.MethodExtension;
+using static Populates.Extensions.MethodExtension;
 
-namespace Infrastructure.Facades.Populates.Visitors;
+namespace Populates.Visitors;
 
 internal class MemberVisitor : ExpressionVisitor
 {

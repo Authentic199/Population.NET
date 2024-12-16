@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Infrastructure.Facades.Populates.Definations;
+namespace Populates.Definations;
 
 internal static class PopulateOptions
 {

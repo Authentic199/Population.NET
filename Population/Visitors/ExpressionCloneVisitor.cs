@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Infrastructure.Facades.QueryBuiders.Visitors;
+namespace QueryBuiders.Visitors;
 
 internal class ExpressionCloneVisitor : ExpressionVisitor
 {

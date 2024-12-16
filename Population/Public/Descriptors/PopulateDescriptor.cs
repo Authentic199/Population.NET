@@ -1,8 +1,8 @@
-﻿using Infrastructure.Facades.Populates.Definations;
-using Infrastructure.Facades.Populates.Internal.Queries;
+﻿using Populates.Definations;
+using Populates.Internal.Queries;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Infrastructure.Facades.Populates.Public.Descriptors;
+namespace Populates.Public.Descriptors;
 
 [ModelBinder(typeof(QueryBinder))]
 public class PopulateDescriptor
