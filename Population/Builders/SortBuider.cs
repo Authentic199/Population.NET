@@ -1,7 +1,6 @@
 ﻿using Population.Public;
-using Population.Visitors;
-using Population.Public;
 using Population.Public.Descriptors;
+using Population.Visitors;
 using System.Linq.Expressions;
 
 namespace Population.Builders;

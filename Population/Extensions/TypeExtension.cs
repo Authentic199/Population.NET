@@ -292,7 +292,7 @@ internal static class TypeExtension
             result = TypeDescriptor.GetConverter(actualType).ConvertFrom(value);
             return result != null;
         }
-        catch (Exception ex)
+        catch
         {
             result = null;
             return false;
