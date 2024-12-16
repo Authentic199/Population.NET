@@ -1,9 +1,6 @@
 ﻿using Population.Extensions;
 using Population.Public.Descriptors;
 using System.Text.RegularExpressions;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateOptions;
-using static Population.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 
@@ -229,7 +226,7 @@ public class FilterRequest
         string propertyInOperator = filterKey.RegexReplace(EndIndexPattern, string.Empty);
         ParamsBag groupInOperator = filterBag.Where(x => GroupInMatch(x.Key)).OrderBy(x => x.Key).ToDictionary(x => x.Key, x => x.Value);
         exceptKey.AddRange(groupInOperator.Keys);
-        return string.Join(SpecialCharacter.Comma, groupInOperator.Values);
+        return string.Join(Comma, groupInOperator.Values);
 
         bool GroupInMatch(string input)
             => InOperatorIndexPatternRegex.IsMatch(input) &&

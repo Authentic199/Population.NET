@@ -1,7 +1,4 @@
-﻿using static Population.Definations.PopulateConstant.SpecialCharacter;
-using static Population.Definations.PopulateOptions;
-
-namespace Population.Public;
+﻿namespace Population.Public;
 
 public struct MemberPath : IEquatable<MemberPath>
 {

@@ -5,10 +5,6 @@ using Population.Internal;
 using Population.Public.Descriptors;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateConstant.MethodAlias;
-using static Population.Definations.PopulateOptions;
-using static Population.Extensions.MethodExtension;
 
 namespace Population.Visitors;
 
@@ -177,7 +173,7 @@ public class CompareOperatorVisitor(CompareOperator compareOperator, string comp
     {
         if (OperatorManager.IsInGroup(compareOperator))
         {
-            string[] splitValues = compareValue.Split([SpecialCharacter.Comma], TrimSplitOptions);
+            string[] splitValues = compareValue.Split([Comma], TrimSplitOptions);
             int arraySize = splitValues.Length;
             Array dynamicArray = Array.CreateInstance(targetType, arraySize);
 

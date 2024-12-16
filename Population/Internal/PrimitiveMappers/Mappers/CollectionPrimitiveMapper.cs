@@ -1,7 +1,6 @@
 ﻿using Population.Extensions;
 using Population.Internal.Projection;
 using System.Linq.Expressions;
-using static Population.Extensions.MethodExtension;
 
 namespace Population.Internal.PrimitiveMappers.Mappers;
 

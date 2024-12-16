@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Population.Internal.Queries;
 using Population.Public.Descriptors;
-using Population.Public.Descriptors;
 
 namespace Population;
 

@@ -1,9 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateConstant.SpecialCharacter;
-using static Population.Definations.PopulateOptions;
 
 namespace Population.Extensions;
 

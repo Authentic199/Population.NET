@@ -3,8 +3,6 @@ using Population.Builders;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
-using static Population.Definations.PopulateOptions;
-using static Population.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.Dictionary<string, string>;
 
 namespace Population.Internal.Queries;

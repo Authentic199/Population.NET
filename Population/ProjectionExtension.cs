@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Population.Extensions;
 using Population.Public.Descriptors;
-using static Population.Extensions.MethodExtension;
 using DictionaryParameters = System.Collections.Generic.IDictionary<string, object>;
 
 namespace Population;

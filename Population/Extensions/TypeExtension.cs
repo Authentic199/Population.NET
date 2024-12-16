@@ -1,5 +1,4 @@
-﻿using Population.Definations;
-using Population.Exceptions;
+﻿using Population.Exceptions;
 using Population.Internal;
 using Population.Public.Descriptors;
 using System.Collections;
@@ -213,7 +212,7 @@ internal static class TypeExtension
     /// </remarks>
     internal static bool IsValidValuesForType(string input, Type targetType)
     {
-        foreach (string value in input.Split(PopulateConstant.SpecialCharacter.Comma, PopulateOptions.TrimSplitOptions))
+        foreach (string value in input.Split(Comma, TrimSplitOptions))
         {
             if (!targetType.TryChangeType(value.Trim(), out _))
             {
@@ -341,7 +340,7 @@ internal static class TypeExtension
     /// </remarks>
     private static bool IsJson(this PropertyInfo propertyInfo)
         => propertyInfo.GetCustomAttribute<ColumnAttribute>() is ColumnAttribute columnAttribute
-        && columnAttribute.TypeName?.Contains("json", PopulateOptions.IgnoreCaseCompare) == true;
+        && columnAttribute.TypeName?.Contains("json", IgnoreCaseCompare) == true;
 
     /// <summary>
     /// Scans the properties in the calling assembly to find those marked as Database JSON properties and caches them.

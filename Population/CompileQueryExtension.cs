@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
 using Population.Public.Queries;
-using static Population.Extensions.MethodExtension;
-using static Population.Internal.Queries.CompileExpression;
 
 namespace Population;
 

@@ -1,10 +1,6 @@
 ﻿using Population.Definations;
 using System.Collections;
 using System.Reflection;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateConstant.SpecialCharacter;
-using static Population.Definations.PopulateOptions;
-using static Population.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 

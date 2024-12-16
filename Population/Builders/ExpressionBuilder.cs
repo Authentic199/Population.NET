@@ -237,7 +237,7 @@ internal static class ExpressionBuilder
             }
 
             if (expression is MethodCallExpression methodCallExpression
-                && methodCallExpression.Method.Name == PopulateConstant.MethodAlias.Select
+                && methodCallExpression.Method.Name == MethodAlias.Select
                 && methodCallExpression.Arguments.LastOrDefault() is LambdaExpression innerLambdaExpression)
             {
                 return innerLambdaExpression.Body is MemberExpression innerMemberExpression

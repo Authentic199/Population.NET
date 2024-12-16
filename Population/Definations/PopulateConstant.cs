@@ -1,7 +1,4 @@
-﻿using static Population.Definations.PopulateConstant.SpecialCharacter;
-using static Population.Definations.PopulateOptions;
-
-namespace Population.Definations;
+﻿namespace Population.Definations;
 
 internal static class PopulateConstant
 {
@@ -43,7 +40,7 @@ internal static class PopulateConstant
 
     internal static bool EqualSelect(this string input) => string.Equals(input, MethodAlias.Select, IgnoreCaseCompare);
 
-    internal static bool EqualSelectMany(this string input) => string.Equals(input, MethodAlias.SelectMany, IgnoreCaseCompare);
+    internal static bool EqualSelectMany(this string input) => string.Equals(input, SelectMany, IgnoreCaseCompare);
 
     internal static string AttachDot(this string prefix) => string.Concat(prefix, Dot);
 

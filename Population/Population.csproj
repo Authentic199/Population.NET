@@ -41,4 +41,15 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+
+	<ItemGroup>
+		<Using Include="Population.Definations.PopulateOptions" Static="true" />
+		<Using Include="Population.Definations.PopulateConstant" Static="true" />
+		<Using Include="Population.Definations.PopulateConstant.MethodAlias" Static="true" />
+		<Using Include="Population.Definations.PopulateConstant.SpecialCharacter" Static="true" />
+		<Using Include="Population.Extensions.MethodExtension" Static="true" />
+		<Using Include="Population.Extensions.RegexExtension" Static="true" />
+		<Using Include="Population.Internal.Queries.CompileExpression" Static="true" />
+	</ItemGroup>
+	
 </Project>

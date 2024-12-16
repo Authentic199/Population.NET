@@ -3,10 +3,6 @@ using Population.Public;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateConstant.SpecialCharacter;
-using static Population.Definations.PopulateOptions;
-using static Population.Extensions.RegexExtension;
 
 namespace Population.Internal.Projection;
 

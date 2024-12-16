@@ -9,7 +9,6 @@ using Population.Public;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Population.Definations.PopulateOptions;
 
 namespace Population.Builders;
 

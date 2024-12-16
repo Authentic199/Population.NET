@@ -1,8 +1,6 @@
 ﻿using Population.Builders;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Population.Definations.PopulateConstant;
-using static Population.Extensions.MethodExtension;
 
 namespace Population.Visitors;
 
@@ -23,7 +21,7 @@ public class SortBuilderVisitor : ExpressionVisitor
                     ? Expression.Lambda(selector.Body.ConvertStringType(property), selector.Parameters[0])
                     : selector;
 
-                return CallCore(EnumerableMethod(MethodAlias.Max, 2, 2), source, selector);
+                return CallCore(EnumerableMethod(Max, 2, 2), source, selector);
             }
         }
 

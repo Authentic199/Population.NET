@@ -2,8 +2,6 @@
 using Population.Extensions;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Population.Definations.PopulateConstant;
-using static Population.Extensions.MethodExtension;
 
 namespace Population.Visitors;
 
@@ -80,7 +78,7 @@ internal class StringConvertVisitor(MemberInfo baseMember) : ExpressionVisitor
 
     private static MethodCallExpression? CallToString(Expression node)
     {
-        MethodInfo? toStringMethod = node.Type.GetMethod(MethodAlias.ToStringAlias, []);
+        MethodInfo? toStringMethod = node.Type.GetMethod(ToStringAlias, []);
 
         if (toStringMethod != null)
         {

@@ -1,7 +1,5 @@
-﻿using Population.Definations;
+﻿using Microsoft.Extensions.Caching.Memory;
 using Population.Extensions;
-using Microsoft.Extensions.Caching.Memory;
-using Population.Public;
 using Population.Public.Attributes;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -104,7 +102,7 @@ public static class PropertyAnalyzer
         {
             foreach (PropertyInfo propertyInfo in propertyInfos)
             {
-                if (propertyInfo.CustomAttributes.Any(x => typeIgnores.Contains(x.AttributeType)) || propertyInfo.PropertyType == typeof(S3FilePath) || propertyInfo.Name.Equals("LanguageCode", PopulateOptions.IgnoreCaseCompare))
+                if (propertyInfo.CustomAttributes.Any(x => typeIgnores.Contains(x.AttributeType)) || propertyInfo.PropertyType == typeof(S3FilePath) || propertyInfo.Name.Equals("LanguageCode", IgnoreCaseCompare))
                 {
                     continue;
                 }

@@ -1,12 +1,9 @@
 ﻿using Population.Extensions;
 using Population.Internal;
 using Population.Internal.Queries;
-using Population.Extensions;
 using Population.Public.Descriptors;
 using System.Collections;
 using System.Reflection;
-using static Population.Definations.PopulateConstant;
-using static Population.Definations.PopulateOptions;
 using static Population.Internal.Queries.QueryParams;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
@@ -109,7 +106,7 @@ public class BindingBuilder
         IList sortCollection = (IList)sorts;
         foreach (ParamsPair paramsPair in sortParams!)
         {
-            string[] valueParts = paramsPair.Value.Split(SpecialCharacter.Colons, TrimSplitOptions);
+            string[] valueParts = paramsPair.Value.Split(Colons, TrimSplitOptions);
             if (valueParts.Length > 2 || valueParts.Length < 1 || ResolveOrder() is not SortOrder sortOrder)
             {
                 continue;
@@ -264,7 +261,7 @@ public class BindingBuilder
                 HashSet<string> populateValue = new(populateParams!.Bind(), StringComparer.OrdinalIgnoreCase);
                 if (populateValue.Count == 0)
                 {
-                    populateValue.Add(SpecialCharacter.Asterisk);
+                    populateValue.Add(Asterisk);
                 }
 
                 populateProperty.SetValue(populate, populateValue);

@@ -16,5 +16,5 @@ public class PopulateDescriptor
         PopulateKeys = populateKeys;
     }
 
-    public List<string> PopulateKeys { get; set; } = [PopulateConstant.SpecialCharacter.Asterisk];
+    public List<string> PopulateKeys { get; set; } = [Asterisk];
 }
