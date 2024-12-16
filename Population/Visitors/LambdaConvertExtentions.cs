@@ -1,11 +1,11 @@
-﻿using Populates.Exceptions;
-using Populates.Extensions;
+﻿using Population.Exceptions;
+using Population.Extensions;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Extensions.MethodExtension;
+using static Population.Definations.PopulateConstant;
+using static Population.Extensions.MethodExtension;
 
-namespace Populates.Visitors;
+namespace Population.Visitors;
 
 internal class StringConvertVisitor(MemberInfo baseMember) : ExpressionVisitor
 {

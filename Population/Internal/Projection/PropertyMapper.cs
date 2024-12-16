@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Populates.Public;
+using Population.Public;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Populates.Internal.Projection;
+namespace Population.Internal.Projection;
 
 internal sealed class PropertyMapper
 {

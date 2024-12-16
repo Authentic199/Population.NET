@@ -1,9 +1,9 @@
-﻿using Populates.Definations;
-using Populates.Extensions;
+﻿using Population.Definations;
+using Population.Extensions;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Populates.Visitors;
+namespace Population.Visitors;
 
 /// <summary>
 /// A visitor that modifies "Select" and "SelectMany" method calls in an expression tree to replace the accessed member with a specified expression.

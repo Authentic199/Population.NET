@@ -1,14 +1,14 @@
-﻿using Populates.Definations;
+﻿using Population.Definations;
 using System.Collections;
 using System.Reflection;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Definations.PopulateConstant.SpecialCharacter;
-using static Populates.Definations.PopulateOptions;
-using static Populates.Extensions.RegexExtension;
+using static Population.Definations.PopulateConstant;
+using static Population.Definations.PopulateConstant.SpecialCharacter;
+using static Population.Definations.PopulateOptions;
+using static Population.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 
-namespace Populates.Extensions;
+namespace Population.Extensions;
 
 internal static class BindingUtilities
 {

@@ -1,16 +1,16 @@
-﻿using Populates.Builders;
-using Populates.Exceptions;
-using Populates.Extensions;
-using Populates.Internal;
-using Populates.Public.Descriptors;
+﻿using Population.Builders;
+using Population.Exceptions;
+using Population.Extensions;
+using Population.Internal;
+using Population.Public.Descriptors;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Definations.PopulateConstant.MethodAlias;
-using static Populates.Definations.PopulateOptions;
-using static Populates.Extensions.MethodExtension;
+using static Population.Definations.PopulateConstant;
+using static Population.Definations.PopulateConstant.MethodAlias;
+using static Population.Definations.PopulateOptions;
+using static Population.Extensions.MethodExtension;
 
-namespace Populates.Visitors;
+namespace Population.Visitors;
 
 public class CompareOperatorVisitor(CompareOperator compareOperator, string compareValue) : ExpressionVisitor
 {

@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace QueryBuiders.Visitors;
+namespace Population.Visitors;
 
 internal class ExpressionCloneVisitor : ExpressionVisitor
 {
@@ -8,7 +8,7 @@ internal class ExpressionCloneVisitor : ExpressionVisitor
 
     protected override Expression VisitParameter(ParameterExpression node)
     {
-        return parameterMap.TryGetValue(node, out var mappedParameter) ? mappedParameter : node;
+        return parameterMap.TryGetValue(node, out ParameterExpression? mappedParameter) ? mappedParameter : node;
     }
 
     protected override Expression VisitMember(MemberExpression node)

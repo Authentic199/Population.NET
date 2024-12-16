@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Populates.Public;
+using Population.Public;
 
-namespace Populates.Internal.Projection;
+namespace Population.Internal.Projection;
 
 internal sealed class TypeMapper
 {

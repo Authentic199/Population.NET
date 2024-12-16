@@ -1,13 +1,13 @@
-﻿using Populates.Extensions;
-using Populates.Internal;
-using Populates.Internal.Queries;
+﻿using Population.Extensions;
+using Population.Internal;
+using Population.Internal.Queries;
 using Population.Extensions;
 using Population.Public.Descriptors;
 using System.Collections;
 using System.Reflection;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Definations.PopulateOptions;
-using static Populates.Internal.Queries.QueryParams;
+using static Population.Definations.PopulateConstant;
+using static Population.Definations.PopulateOptions;
+using static Population.Internal.Queries.QueryParams;
 using ParamsBag = System.Collections.Generic.IDictionary<string, string>;
 using ParamsPair = System.Collections.Generic.KeyValuePair<string, string>;
 

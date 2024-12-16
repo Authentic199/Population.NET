@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Populates.Exceptions;
-using Populates.Extensions;
-using Populates.Public;
+using Population.Exceptions;
+using Population.Extensions;
+using Population.Public;
 
-namespace Populates.Internal.Projection;
+namespace Population.Internal.Projection;
 
 internal class ProjectionRequest : IEquatable<ProjectionRequest>
 {

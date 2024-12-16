@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 
-namespace Populates.Visitors;
+namespace Population.Visitors;
 
 /// <summary>
 /// A visitor that modifies lambda expressions to work with a specified enumerable type.

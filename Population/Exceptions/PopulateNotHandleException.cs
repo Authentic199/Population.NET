@@ -1,4 +1,4 @@
-﻿namespace Populates.Exceptions;
+﻿namespace Population.Exceptions;
 
 [Serializable]
 public class PopulateNotHandleException : Exception

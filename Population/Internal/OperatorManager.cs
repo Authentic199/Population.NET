@@ -1,7 +1,7 @@
-﻿using Populates.Public.Descriptors;
+﻿using Population.Public.Descriptors;
 using System.Collections.Immutable;
 
-namespace Populates.Internal;
+namespace Population.Internal;
 
 public static class OperatorManager
 {

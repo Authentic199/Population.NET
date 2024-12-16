@@ -1,9 +1,9 @@
-﻿using Populates.Public;
-using Populates.Visitors;
+﻿using Population.Public;
+using Population.Visitors;
 using Population.Public;
 using Population.Public.Descriptors;
 using System.Linq.Expressions;
-using static Populates.Extensions.MethodExtension;
+using static Population.Extensions.MethodExtension;
 
 namespace Population.Builders;
 

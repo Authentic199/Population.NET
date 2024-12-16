@@ -1,4 +1,4 @@
-﻿namespace Populates.Public.Descriptors;
+﻿namespace Population.Public.Descriptors;
 
 public record FilterDescriptor(string Path, string Value, NextLogicalOperator LogicalOperator, CompareOperator CompareOperator, string Group);
 

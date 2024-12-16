@@ -1,11 +1,11 @@
 ﻿using Humanizer;
-using Populates.Exceptions;
+using Population.Exceptions;
 using System.Collections;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 
-namespace Populates.Extensions;
+namespace Population.Extensions;
 
 public static class AnonymousTypeGenerator
 {

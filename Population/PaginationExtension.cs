@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Common.Extensions;
+namespace Population;
 
 public static class PaginationExtension
 {

@@ -1,4 +1,4 @@
-﻿namespace Populates.Public.Descriptors;
+﻿namespace Population.Public.Descriptors;
 
 public class PagingDescriptor
 {

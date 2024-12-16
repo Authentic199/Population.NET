@@ -1,8 +1,8 @@
-﻿using Populates.Builders;
-using Populates.Public;
+﻿using Population.Builders;
+using Population.Public;
 using System.Linq.Expressions;
 
-namespace Populates.Internal.Queries;
+namespace Population.Internal.Queries;
 
 internal class QueryExpression
 {

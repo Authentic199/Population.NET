@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Population;
 
-namespace Populates.Internal.Queries;
+namespace Population.Internal.Queries;
 
 public class QueryBinder : IModelBinder
 {

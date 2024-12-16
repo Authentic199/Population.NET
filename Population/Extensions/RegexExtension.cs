@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Text.RegularExpressions;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Definations.PopulateConstant.SpecialCharacter;
-using static Populates.Definations.PopulateOptions;
+using static Population.Definations.PopulateConstant;
+using static Population.Definations.PopulateConstant.SpecialCharacter;
+using static Population.Definations.PopulateOptions;
 
-namespace Populates.Extensions;
+namespace Population.Extensions;
 
 internal static partial class RegexExtension
 {

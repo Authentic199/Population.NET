@@ -1,9 +1,9 @@
-﻿using Populates.Internal.Queries;
-using Populates.Public.Descriptors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Population.Internal.Queries;
+using Population.Public.Descriptors;
 using Population.Public.Descriptors;
 
-namespace Populates;
+namespace Population;
 
 [ModelBinder(typeof(QueryBinder))]
 public class QueryContext

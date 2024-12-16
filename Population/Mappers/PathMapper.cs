@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using Populates.Builders;
-using Populates.Extensions;
-using Populates.Public;
+using Population.Builders;
+using Population.Extensions;
+using Population.Public;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Populates.Mappers;
+namespace Population.Mappers;
 
 internal static class PathMapper
 {

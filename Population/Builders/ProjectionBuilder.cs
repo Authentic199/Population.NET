@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
-using Populates.Definations;
-using Populates.Exceptions;
-using Populates.Extensions;
-using Populates.Internal.PrimitiveMappers;
-using Populates.Internal.Projection;
-using Populates.Internal.Queries;
-using Populates.Public;
+using Population.Definations;
+using Population.Exceptions;
+using Population.Extensions;
+using Population.Internal.PrimitiveMappers;
+using Population.Internal.Projection;
+using Population.Internal.Queries;
+using Population.Public;
 using Microsoft.Extensions.Caching.Memory;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Populates.Definations.PopulateOptions;
+using static Population.Definations.PopulateOptions;
 
-namespace Populates.Builders;
+namespace Population.Builders;
 
 internal class ProjectionBuilder
 {

@@ -1,8 +1,9 @@
-﻿using Populates.Extensions;
-using Populates.Public;
-using Populates.Public.Descriptors;
+﻿using Population.Extensions;
+using Population.Public;
+using Population.Public.Descriptors;
+using Population;
 
-namespace Populates.Builders;
+namespace Population.Builders;
 
 internal static class SearchBuilder
 {

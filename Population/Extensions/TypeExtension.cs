@@ -1,7 +1,7 @@
-﻿using Populates.Definations;
-using Populates.Exceptions;
-using Populates.Internal;
-using Populates.Public.Descriptors;
+﻿using Population.Definations;
+using Population.Exceptions;
+using Population.Internal;
+using Population.Public.Descriptors;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Immutable;
@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Populates.Extensions;
+namespace Population.Extensions;
 
 internal static class TypeExtension
 {

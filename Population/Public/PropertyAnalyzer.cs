@@ -1,5 +1,5 @@
-﻿using Populates.Definations;
-using Populates.Extensions;
+﻿using Population.Definations;
+using Population.Extensions;
 using Microsoft.Extensions.Caching.Memory;
 using Population.Public;
 using Population.Public.Attributes;
@@ -7,9 +7,9 @@ using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection;
 using TraversalBag = System.Collections.Generic.Dictionary<System.Reflection.PropertyInfo, int>;
-using TypeBag = System.ValueTuple<System.Type, Populates.Public.MemberPath>;
+using TypeBag = System.ValueTuple<System.Type, Population.Public.MemberPath>;
 
-namespace Populates.Public;
+namespace Population.Public;
 
 public static class PropertyAnalyzer
 {

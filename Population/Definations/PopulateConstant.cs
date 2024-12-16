@@ -1,7 +1,7 @@
-﻿using static Populates.Definations.PopulateConstant.SpecialCharacter;
-using static Populates.Definations.PopulateOptions;
+﻿using static Population.Definations.PopulateConstant.SpecialCharacter;
+using static Population.Definations.PopulateOptions;
 
-namespace Populates.Definations;
+namespace Population.Definations;
 
 internal static class PopulateConstant
 {

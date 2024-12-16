@@ -1,8 +1,8 @@
-﻿using Populates.Extensions;
+﻿using Population.Extensions;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Populates.Public;
+namespace Population.Public;
 
 public interface IMetaPathBag : IDictionary<MemberPath, PathInfo>
 {

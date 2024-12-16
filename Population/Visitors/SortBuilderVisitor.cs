@@ -1,10 +1,10 @@
-﻿using Populates.Builders;
+﻿using Population.Builders;
 using System.Linq.Expressions;
 using System.Reflection;
-using static Populates.Definations.PopulateConstant;
-using static Populates.Extensions.MethodExtension;
+using static Population.Definations.PopulateConstant;
+using static Population.Extensions.MethodExtension;
 
-namespace Populates.Visitors;
+namespace Population.Visitors;
 
 public class SortBuilderVisitor : ExpressionVisitor
 {

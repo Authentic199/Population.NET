@@ -36,7 +36,7 @@ dotnet add package Population.NET-071099 --version 1.0.0
 To sort a collection, use the `SortBuilder` class. Below is an example of sorting a collection by a specific property:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using Population.Public.Descriptors;
 using System.Collections.Generic;
 
@@ -54,7 +54,7 @@ var sortedQuery = sortDescriptors.BuildSortQuery<MyDocumentType>();
 To filter a collection, use the `FilterBuilder` class. Here’s an example of applying filters:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using Population.Public.Descriptors;
 using System.Collections.Generic;
 
@@ -72,7 +72,7 @@ var filteredQuery = filterDescriptors.BuildFilterQuery<MyDocumentType>();
 To project data from one type to another, use the `ProjectionBuilder` class:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using AutoMapper;
 using System.Linq;
 
@@ -90,7 +90,7 @@ var projectedQuery = projectionBuilder.GetProjection(sourceQueryable, typeof(Des
 Here’s a detailed example for sorting a collection by multiple properties:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using Population.Public.Descriptors;
 using System.Collections.Generic;
 
@@ -109,7 +109,7 @@ var sortedQuery = sortDescriptors.BuildSortQuery<MyDocumentType>();
 Here’s a detailed example of applying multiple filters:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using Population.Public.Descriptors;
 using System.Collections.Generic;
 
@@ -128,7 +128,7 @@ var filteredQuery = filterDescriptors.BuildFilterQuery<MyDocumentType>();
 Projecting data while specifying populate keys:
 
 ```csharp
-using Infrastructure.Facades.Populates.Builders;
+using Infrastructure.Facades.Population.Builders;
 using AutoMapper;
 using System.Linq;
 

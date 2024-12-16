@@ -1,9 +1,9 @@
-﻿using Populates.Extensions;
-using Populates.Internal.Projection;
+﻿using Population.Extensions;
+using Population.Internal.Projection;
 using System.Linq.Expressions;
-using static Populates.Extensions.MethodExtension;
+using static Population.Extensions.MethodExtension;
 
-namespace Populates.Internal.PrimitiveMappers.Mappers;
+namespace Population.Internal.PrimitiveMappers.Mappers;
 
 internal class CollectionPrimitiveMapper : IPrimitiveMapper
 {

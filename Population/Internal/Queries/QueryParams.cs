@@ -3,11 +3,11 @@ using Population.Builders;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
-using static Populates.Definations.PopulateOptions;
-using static Populates.Extensions.RegexExtension;
+using static Population.Definations.PopulateOptions;
+using static Population.Extensions.RegexExtension;
 using ParamsBag = System.Collections.Generic.Dictionary<string, string>;
 
-namespace Populates.Internal.Queries;
+namespace Population.Internal.Queries;
 
 public class QueryParams
 {
