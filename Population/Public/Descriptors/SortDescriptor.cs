@@ -1,6 +1,4 @@
-﻿using Core.Bases;
-
-namespace Population.Public.Descriptors;
+﻿namespace Population.Public.Descriptors;
 
 public class SortDescriptor
 {

@@ -1,6 +1,6 @@
 ﻿using MassTransit;
 
-namespace Core.Bases;
+namespace Population.Public;
 
 public interface IEntity
 {

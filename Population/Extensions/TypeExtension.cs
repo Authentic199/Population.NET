@@ -2,12 +2,12 @@
 using Populates.Exceptions;
 using Populates.Internal;
 using Populates.Public.Descriptors;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Immutable;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq.Expressions;
 using System.Reflection;
 
 namespace Populates.Extensions;
@@ -282,7 +282,7 @@ internal static class TypeExtension
     {
         if (value == null)
         {
-            result = conversionType.IsNullableType() ? null : conversionType.GetDefaultValue();
+            result = conversionType.IsNullableType() ? null : Expression.Constant(default, conversionType);
             return conversionType.IsNullableType();
         }
 

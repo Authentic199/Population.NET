@@ -1,6 +1,6 @@
-﻿using Core.Bases;
-using Populates.Public;
+﻿using Populates.Public;
 using Populates.Visitors;
+using Population.Public;
 using Population.Public.Descriptors;
 using System.Linq.Expressions;
 using static Populates.Extensions.MethodExtension;
