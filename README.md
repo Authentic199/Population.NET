@@ -10,13 +10,14 @@ Population.NET is a .NET library designed to simplify complex data manipulation 
 
 ## Main Features
 
+- **Built-in BaseEntity Support**: Provides a built-in abstract `BaseEntity` class to simplify entity creation
 - **QueryContext**: Provides a common **query params** request class for search APIs.
 - **Simple Population**:  Easily retrieve and populate data with a simple and intuitive API, inspired by Strapi's populate feature.
 - **Population with Filters, Search, Sort, and Paging**: Combine population capabilities seamlessly with filtering, searching, sorting, and pagination to handle complex data queries efficiently.
 
 ---
 
-## Installation
+## ⏳ Installation
 
 ### Using Package Manager
 
@@ -47,113 +48,320 @@ dotnet add package Population.NET --version 1.1.2
 
 ---
 
-## Usage
+## 🖐 Requirements
 
-### Sorting
-To sort a collection, use the `SortBuilder` class. Below is an example of sorting a collection by a specific property:
+To use **Population.NET**, ensure the following requirements are met:
 
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using Population.Public.Descriptors;
-using System.Collections.Generic;
+1. **Using .NET 8 or higher**  
+   Make sure your project is targeting **.NET 8** or a newer version. You can set the target framework in your `.csproj` file:
 
-ICollection<SortDescriptor> sortDescriptors = new List<SortDescriptor>
-{
-    new SortDescriptor("PropertyName", SortOrder.Asc)
-};
+   ```xml
+   <TargetFramework>net8.0</TargetFramework>
 
-var sortedQuery = sortDescriptors.BuildSortQuery<MyDocumentType>();
-```
+2. **AutoMapper Configuration**
+   Configure AutoMapper in your project to handle object mapping. Below is a simple example of how to set up AutoMapper:
+   
+    ```csharp
+    using AutoMapper;
 
----
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            // Example mapping configuration
+            CreateMap<Entity, Response>();
+        }
+    }
+    ```
+    Then, register the mapping configuration in your project (e.g., in Program.cs):
+    
+    ```csharp
+    var mapperConfig = new MapperConfiguration(cfg => 
+    {
+        cfg.AddProfile<MappingProfile>();
+    });
 
-### Filtering
-To filter a collection, use the `FilterBuilder` class. Here’s an example of applying filters:
+    IMapper mapper = mapperConfig.CreateMapper();
+    builder.Services.AddSingleton(mapper);
+    ```
+    or
 
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using Population.Public.Descriptors;
-using System.Collections.Generic;
-
-ICollection<FilterDescriptor> filterDescriptors = new List<FilterDescriptor>
-{
-    new FilterDescriptor("PropertyName", "Value", NextLogicalOperator.And, CompareOperator.Equal, "Group")
-};
-
-var filteredQuery = filterDescriptors.BuildFilterQuery<MyDocumentType>();
-```
-
----
-
-### Projection
-To project data from one type to another, use the `ProjectionBuilder` class:
-
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using AutoMapper;
-using System.Linq;
-
-var configurationProvider = new MapperConfiguration(cfg => cfg.CreateMap<SourceType, DestinationType>());
-var projectionBuilder = new ProjectionBuilder(configurationProvider);
-
-var projectedQuery = projectionBuilder.GetProjection(sourceQueryable, typeof(DestinationType), new[] { "PopulateKey" }, null);
-```
+    ```csharp
+    builder.Services.AddAutoMapper(typeof(ProfileAssemblyType))
+    ```
 
 ---
 
-## Detailed Examples
+## 🚀 Usage Example
 
-### Sorting Example: Multiple Properties
-Here’s a detailed example for sorting a collection by multiple properties:
+1. **Built-in BaseEntity Support**
 
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using Population.Public.Descriptors;
-using System.Collections.Generic;
+    **Population.NET** provides a built-in abstract `BaseEntity` class to simplify entity creation. It supports automatic ID generation and creation timestamps.
+    
+    ```csharp
+    public abstract class BaseEntity : BaseEntity<Guid>, IGuidIdentify
+    {
+        protected BaseEntity() => Id = NewId.Next().ToGuid();
+    }
 
-ICollection<SortDescriptor> sortDescriptors = new List<SortDescriptor>
-{
-    new SortDescriptor("FirstName", SortOrder.Asc),
-    new SortDescriptor("LastName", SortOrder.Desc)
-};
+    public abstract class BaseEntity<TId> : IEntity<TId>
+    {
+        public TId Id { get; set; } = default!;
+        public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    }
+    ```
 
-var sortedQuery = sortDescriptors.BuildSortQuery<MyDocumentType>();
-```
+Before diving into the next steps, let's create the necessary **models** and their corresponding **response DTOs**.
 
+- **Create Models**
+
+    ```csharp
+    public class User : BaseEntity
+    {
+        public string Name { get; set; } = default!;
+
+        public string Email { get; set; } = default!;
+
+        public string UserName { get; set; } = default!;
+
+        public string Password { get; set; } = default!;
+
+        public UserOperationStatus Status { get; set; } = UserOperationStatus.Active;
+
+        public Guid RoleId { get; set; }
+
+        public Role? Role { get; set; }
+    }
+
+    public enum UserOperationStatus
+    {
+        /// <summary>
+        /// Active
+        /// </summary>
+        Active = 1,
+
+        /// <summary>
+        /// Locked
+        /// </summary>
+        Locked = 2,
+    }
+    ```
+
+    ```csharp
+    public class Role : BaseEntity
+    {
+        public string Name { get; set; } = default!;
+
+        public string? Description { get; set; }
+
+        public ICollection<User> Users { get; set; } = default!;
+
+        public ICollection<Permission> Permissions { get; set; } = default!;
+    }
+    ```
+
+    ```csharp
+    public class Permission : BaseEntity
+    {
+        public string Code { get; set; } = default!;
+
+        public string Name { get; set; } = default!;
+
+        public Guid RoleId { get; set; }
+
+        public Role? Role { get; set; }
+    }
+
+    ```
+- **Create response DTOs**
+    ```csharp
+    public class UserResponse : BaseEntity
+    {
+        public string Name { get; set; } = default!;
+
+        public string Email { get; set; } = default!;
+
+        public string UserName { get; set; } = default!;
+
+        public string Password { get; set; } = default!;
+
+        public UserOperationStatus Status { get; set; } = UserOperationStatus.Active;
+
+        public RoleResponse? Role { get; set; }
+    }
+    ```
+    
+    ```csharp
+    public class RoleResponse : BaseEntity
+    {
+        public string Name { get; set; } = default!;
+
+        public string? Description { get; set; }
+
+        public ICollection<PermissionResponse> Permissions { get; set; } = default!;
+    }
+    ```
+
+    
+    ```csharp
+    public class PermissionResponse : BaseEntity
+    {
+        public string Code { get; set; } = default!;
+
+        public string Name { get; set; } = default!;
+    }
+    ```
+
+- **Config mapping**
+
+    ```csharp
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<User, UserResponse>();
+            CreateMap<Role, RoleResponse>();
+            CreateMap<Permission, PermissionResponse>();
+        }
+    }
+    ```
+
+- **Prepare Test Data**
+
+    Let’s create a simple API for **creating users** and use the provided test data.
+
+    ```csharp
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
+    {
+        User user = mapper.Map<User>(request);
+        await context.Users.AddAsync(user);
+        await context.SaveChangesAsync();
+        return Ok();
+    }
+    ```
+
+    **Example JSON Payload**
+
+    ```json
+    {
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "userName": "johndoe123",
+      "password": "Password@123",
+      "status": 1,
+      "role": {
+        "name": "Admin",
+        "description": "Administrator role with full access",
+        "permissions": [
+               {
+                  "code": "READ",
+                  "name": "Read Access"
+               },
+               {
+                  "code": "WRITE",
+                  "name": "Write Access"
+               }
+            ]
+        }
+    }
+    ```
+    
+    ```json
+    {
+       "name": "Jane Smith",
+       "email": "jane.smith@example.com",
+       "userName": "janesmith456",
+       "password": "SecurePass@2024",
+       "status": 1,
+       "role": {
+        "name": "Editor",
+        "description": "Editor role with limited access",
+        "permissions": [
+                {
+                    "code": "UPDATE",
+                    "name": "Update Access"
+                }
+            ]
+        }
+    }
+    ```
 ---
 
-### Filtering Example: Multiple Conditions
-Here’s a detailed example of applying multiple filters:
+2. **Simple Population**
 
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using Population.Public.Descriptors;
-using System.Collections.Generic;
+    We will create a simple **GET API** to fetch all users using AutoMapper's `ProjectTo` method.
 
-ICollection<FilterDescriptor> filterDescriptors = new List<FilterDescriptor>
-{
-    new FilterDescriptor("Age", "30", NextLogicalOperator.And, CompareOperator.GreaterThan, "Group1"),
-    new FilterDescriptor("Country", "USA", NextLogicalOperator.Or, CompareOperator.Equal, "Group2")
-};
+    ```csharp
+     [HttpGet("UsingProjectTo")]
+    public async Task<IActionResult> GetAllAsync()
+    {
+        List<UserResponse> response = await context.Users
+            .ProjectTo<UserResponse>(mapper.ConfigurationProvider)
+            .ToListAsync();
 
-var filteredQuery = filterDescriptors.BuildFilterQuery<MyDocumentType>();
-```
+        return Ok(mapper.Map<List<UserResponse>>(response));
+    }
+    ```
 
----
+    By default, when using ProjectTo from AutoMapper without additional filtering, the data returned will include all properties defined in the **response DTOs** class. This behavior can lead to overfetching of data, especially when the response class contains nested relationships or unnecessary fields.
 
-### Projection Example: Specific Populate Keys
-Projecting data while specifying populate keys:
-
-```csharp
-using Infrastructure.Facades.Population.Builders;
-using AutoMapper;
-using System.Linq;
-
-var configurationProvider = new MapperConfiguration(cfg => cfg.CreateMap<SourceType, DestinationType>());
-var projectionBuilder = new ProjectionBuilder(configurationProvider);
-
-var projectedQuery = projectionBuilder.GetProjection(sourceQueryable, typeof(DestinationType), new[] { "FirstName", "LastName" }, null);
-```
+    ```json
+    [
+        {
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "userName": "johndoe123",
+            "password": "Password@123",
+            "status": 1,
+            "role": {
+                "name": "Admin",
+                "description": "Administrator role with full access",
+                "permissions": [
+                        {
+                        "code": "READ",
+                        "name": "Read Access",
+                        "id": "74850000-9961-b42e-8d36-08dd1e75109e",
+                        "createdAt": "2024-12-17T08:30:29.531166+00:00"
+                        },
+                        {
+                        "code": "WRITE",
+                        "name": "Write Access",
+                        "id": "74850000-9961-b42e-90f7-08dd1e75109e",
+                        "createdAt": "2024-12-17T08:30:29.531262+00:00"
+                        }
+                    ],
+                    "id": "74850000-9961-b42e-baae-08dd1e75109d",
+                    "createdAt": "2024-12-17T08:30:29.525732+00:00"
+                },
+            "id": "74850000-9961-b42e-a80d-08dd1e75109d",
+            "createdAt": "2024-12-17T08:30:29.463949+00:00"
+        },
+        {
+            "name": "Jane Smith",
+            "email": "jane.smith@example.com",
+            "userName": "janesmith456",
+            "password": "SecurePass@2024",
+            "status": 1,
+            "role": {
+                    "name": "Editor",
+                    "description": "Editor role with limited access",
+                    "permissions": [
+                        {
+                        "code": "UPDATE",
+                        "name": "Update Access",
+                        "id": "74850000-9961-b42e-c7ba-08dd1e753304",
+                        "createdAt": "2024-12-17T08:31:27.243666+00:00"
+                        }
+                    ],
+                "id": "74850000-9961-b42e-c778-08dd1e753304",
+                "createdAt": "2024-12-17T08:31:27.24366+00:00"
+                },
+            "id": "74850000-9961-b42e-c760-08dd1e753304",
+            "createdAt": "2024-12-17T08:31:27.243656+00:00"
+        }
+    ]
+    ```
 
 ---
 
