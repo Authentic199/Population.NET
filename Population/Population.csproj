@@ -4,16 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
 	<PackageId>Population.NET</PackageId>
-	<Version>1.1.1</Version>
+	<Version>1.1.2</Version>
 	<Authors>Authentic</Authors>
     <Nullable>enable</Nullable>
     <Title>Population.NET</Title>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PublishRepositoryUrl>true</PublishRepositoryUrl>
 	<Description>Population.NET is a powerful library for .NET, inspired by the Populate feature of Strapi in Node.js. Population.NET simplifies querying complex data sources by automatically loading relationships between objects. In addition to its core populate functionality, the library integrates robust tools such as filtering, searching, sorting, and paging, enabling you to optimize data retrieval processes. With Population.NET, you can effortlessly build rich and efficient APIs to meet the demands of modern applications.</Description>
-	<PackageProjectUrl>https://github.com/chanh-am-me/Population.NET</PackageProjectUrl>
+	<PackageProjectUrl>https://github.com/Authentic199/Population.NET</PackageProjectUrl>
 	<PackageIcon>icon.png</PackageIcon>
-	<RepositoryUrl>https://github.com/chanh-am-me/Population.NET</RepositoryUrl>
+	<RepositoryUrl>https://github.com/Authentic199/Population.NET</RepositoryUrl>
 	<PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 

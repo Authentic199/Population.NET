@@ -1,31 +1,49 @@
+<p align="center">
+  <img src="icon.png" alt="Population.NET Logo" width="200" />
+</p>
 
-# Population.NET
+<h1 align="center">Population.NET</h1>
 
-Population.NET is a .NET library designed to facilitate complex data manipulation and querying operations. It provides robust tools for sorting, filtering, and projecting data, making it easier to work with large datasets efficiently.
 
-## Features
+# What is Population.NET?
 
-- **Sorting**: Easily sort collections using various criteria.
-- **Filtering**: Apply complex filters to collections with support for multiple logical operators.
-- **Projection**: Project data from one type to another using customizable mappings.
-- **Integration**: Seamlessly integrates with popular libraries like AutoMapper, Entity Framework Core, and more.
+Population.NET is a .NET library designed to simplify complex data manipulation and querying operations. Inspired by the [Populate feature of Strapi in Node.js](https://docs.strapi.io/dev-docs/api/rest/populate-select), it offers robust tools for sorting, filtering, and projecting data, enabling efficient handling of large datasets. With Population.NET, you can seamlessly build powerful and optimized APIs to meet the demands of modern applications.
+
+## Main Features
+
+- **QueryContext**: Provides a common **query params** request class for search APIs.
+- **Simple Population**:  Easily retrieve and populate data with a simple and intuitive API, inspired by Strapi's populate feature.
+- **Population with Filters, Search, Sort, and Paging**: Combine population capabilities seamlessly with filtering, searching, sorting, and pagination to handle complex data queries efficiently.
 
 ---
 
 ## Installation
 
 ### Using Package Manager
+
+To install **Population.NET** in using Using Package Manager, follow these steps:
+
+1. Open **Visual Studio 2022**.
+2. Go to **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution...**.
+3. Search for `Population.NET` in the Browse tab and install the package.
+
+<p align="center">
+  <img src="assets/nuget-install.png" alt="NuGet Installation Example" width="600" />
+</p>
+
+or
+
 Add the following package reference to your project file:
 
 ```xml
-<PackageReference Include="Population.NET-071099" Version="1.0.0" />
+<PackageReference Include="Population.NET" Version="1.1.2" />
 ```
 
 ### Using .NET CLI
 Alternatively, install it via the .NET CLI:
 
 ```bash
-dotnet add package Population.NET-071099 --version 1.0.0
+dotnet add package Population.NET --version 1.1.2
 ```
 
 ---
