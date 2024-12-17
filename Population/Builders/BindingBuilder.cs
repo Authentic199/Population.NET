@@ -264,7 +264,7 @@ public class BindingBuilder
                     populateValue.Add(Asterisk);
                 }
 
-                populateProperty.SetValue(populate, populateValue);
+                populateProperty.SetValue(populate, populateValue.ToList());
             }
         }
     }
