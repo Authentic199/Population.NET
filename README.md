@@ -522,12 +522,27 @@ To use **Population.NET**, ensure the following requirements are met:
     | `populate[role][populate][permissions]=true`|
     | `populate[role][populate][permissions]=*`   |
 
+## 3. **Population with Filters, Search, Sort, and Paging**
 
-<br>
-    > ⚠️ **Note:**  
-    > Documentation for **Filters, Search, Sort, and Paging** is still under development.  
-    > In the meantime, you can refer to the relevant sections in [Strapi Documentation](https://docs.strapi.io/dev-docs/api/rest).
-</br>
+To use **Population with Filters, Search, Sort, and Paging**, we will utilize the **`CompileQueryAsync`** extension method instead of **`ProjectDynamic`**.
+
+### Example usage:
+
+   ```CSharp
+   [HttpGet("PopulationWithDataManipulation")]
+   public async Task<IActionResult> GetAllWithSimplePopulationWithDataManipulationAsync([FromQuery] QueryContext queryContext)
+   {
+       PaginationResponse<dynamic> response = await context.Users.CompileQueryAsync<UserResponse>(queryContext, mapper);
+
+       return Ok(response);
+   }
+   ```
+
+    
+## ⚠️ **Note:**  
+> Documentation for **Filters, Search, Sort, and Paging** is still under development.  
+> In the meantime, you can refer to the relevant sections in [Strapi Documentation](https://docs.strapi.io/dev-docs/api/rest).
+
 
 ## Contributing
 
