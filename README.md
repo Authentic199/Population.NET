@@ -4,7 +4,6 @@
 
 <h1 align="center">Population.NET</h1>
 
-
 # What is Population.NET?
 
 Population.NET is a .NET library designed to simplify complex data manipulation and querying operations. Inspired by the [Populate feature of Strapi in Node.js](https://docs.strapi.io/dev-docs/api/rest/populate-select), it offers robust tools for sorting, filtering, and projecting data, enabling efficient handling of large datasets. With Population.NET, you can seamlessly build powerful and optimized APIs to meet the demands of modern applications.
@@ -27,8 +26,8 @@ To install **Population.NET** in using Using Package Manager, follow these steps
 2. Go to **Tools** -> **NuGet Package Manager** -> **Manage NuGet Packages for Solution...**.
 3. Search for `Population.NET` in the Browse tab and install the package.
 
-<p align="center">
-  <img src="assets/nuget-install.png" alt="NuGet Installation Example" width="600" />
+<p align="left">
+  <img src="install.png" alt="NuGet Installation Example" width="600" />
 </p>
 
 or
