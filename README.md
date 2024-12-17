@@ -111,7 +111,7 @@ To use **Population.NET**, ensure the following requirements are met:
     }
     ```
 
-Before diving into the next steps, let's create the necessary **models** and their corresponding **response DTOs**.
+ > **Note:** Before diving into the next steps, let's create the necessary **models** and their corresponding **response DTOs**.
 
 - **Create Models**
 
@@ -290,17 +290,18 @@ Before diving into the next steps, let's create the necessary **models** and the
 
 2. **Simple Population**
 
+    ### Normally
     We will create a simple **GET API** to fetch all users using AutoMapper's `ProjectTo` method.
 
     ```csharp
-     [HttpGet("UsingProjectTo")]
+    [HttpGet("UsingProjectTo")]
     public async Task<IActionResult> GetAllAsync()
     {
         List<UserResponse> response = await context.Users
-            .ProjectTo<UserResponse>(mapper.ConfigurationProvider)
+            ProjectTo<UserResponse>(mapper.ConfigurationProvider)
             .ToListAsync();
 
-        return Ok(mapper.Map<List<UserResponse>>(response));
+        return Ok(response);
     }
     ```
 
@@ -337,33 +338,196 @@ Before diving into the next steps, let's create the necessary **models** and the
             "id": "74850000-9961-b42e-a80d-08dd1e75109d",
             "createdAt": "2024-12-17T08:30:29.463949+00:00"
         },
+        ...
+    ]
+    ```
+
+    ## Using population
+
+    Create **GET API** to fetch all users using AutoMapper's `ProjectDynamic` method.
+
+    ```csharp
+    [HttpGet("SimplePopulation")]
+    public async Task<IActionResult> GetAllWithSimplePopulationAsync([FromQuery] QueryContext queryContext)
+    {
+        List<dynamic> response = await context.Users
+            .ProjectDynamic<UserResponse>(mapper, queryContext.Populate)
+            .ToListAsync();
+
+        return Ok(response);
+    }
+    ```
+    
+    1. 🔥 **Field Selection**
+
+    Queries can accept a `fields` parameter to select only specific fields. By default, only the following types of fields are returned:
+
+    - **String types**: string, uuid, ...
+    - **Date types**: DateTime, DateTimeOffset, ....
+    - **Number types**: integer, long, float, and decimal.
+    - **Generic types**: boolean, array of primitive types.
+
+    ### Example Use Cases
+
+    | **Use case**               | **Example parameter syntax**                    |
+    |--------------------------- |-------------------------------------------------|
+    | Select a single field      | `fields=name`                                   |
+    | Select multiple fields     | `fields=name&fields=Email`                      |
+    | Select populate and fields | `populate[Role][fields]=name`                   |
+
+
+    > **Note:** Field selection does not work on relational. To populate these fields, use the `populate` parameter.
+    
+
+    **Example Request: Return only name, description, Role.Name fields**
+
+    ```http
+    GET /api/User/SimplePopulation?fields=name&fields=Email&populate[Role][fields]=name
+    ```
+
+    **Example Response:**
+
+    ```json
+    [
+        {
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "role": {
+                "name": "Admin"
+            }
+        },
         {
             "name": "Jane Smith",
             "email": "jane.smith@example.com",
-            "userName": "janesmith456",
-            "password": "SecurePass@2024",
-            "status": 1,
             "role": {
-                    "name": "Editor",
-                    "description": "Editor role with limited access",
-                    "permissions": [
-                        {
-                        "code": "UPDATE",
-                        "name": "Update Access",
-                        "id": "74850000-9961-b42e-c7ba-08dd1e753304",
-                        "createdAt": "2024-12-17T08:31:27.243666+00:00"
-                        }
-                    ],
-                "id": "74850000-9961-b42e-c778-08dd1e753304",
-                "createdAt": "2024-12-17T08:31:27.24366+00:00"
-                },
-            "id": "74850000-9961-b42e-c760-08dd1e753304",
-            "createdAt": "2024-12-17T08:31:27.243656+00:00"
+                "name": "Editor"
+            }
         }
     ]
     ```
 
----
+    2. 🔥 **Without populate**
+
+    Without the `populate` parameter, a `GET` request will only return the default fields and will not include any related data.
+
+    **Example Request:**
+
+     ```http
+    GET /api/User/SimplePopulation
+    ```
+
+    **Example Response:**
+
+     ```json
+     [
+        {
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "userName": "johndoe123",
+            "password": "Password@123",
+            "status": 1,
+            "id": "74850000-9961-b42e-a80d-08dd1e75109d",
+            "createdAt": "2024-12-17T08:30:29.463949+00:00"
+        },
+        ...
+    ]
+     ```
+
+    3. 🔥 **Populate all relations and fields, 1 level deep**
+
+    You can return all fields and relations. For relations, this will only work 1 level deep, to prevent performance issues and long response times.
+
+    To populate everything 1 level deep, add the `populate=*` parameter to your query.
+
+    **Example Request:**
+
+    ```http
+    GET /api/User/SimplePopulation?populate=*
+    ```
+
+    **Example Response:**
+
+     ```json
+     [
+        {
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "userName": "johndoe123",
+            "password": "Password@123",
+            "status": 1,
+            "id": "74850000-9961-b42e-a80d-08dd1e75109d",
+            "createdAt": "2024-12-17T08:30:29.463949+00:00",
+            "role": {
+                "name": "Admin",
+                "description": "Administrator role with full access",
+                "id": "74850000-9961-b42e-baae-08dd1e75109d",
+                "createdAt": "2024-12-17T08:30:29.525732+00:00"
+            }
+        },
+        ...
+    ]
+     ```
+
+    > **Note:** If your data includes additional relationships beyond `role`, such as `organization`, or `groups` using the `populate=*` parameter will also include those relationships as long as they are at a depth of 1
+
+    4. 🔥 **Populate specific relations and fields**
+
+    You can also `populate` specific relations and fields, by explicitly defining what to populate. This requires that you know the name of fields and relations to populate.
+
+    > **Note:** Relations and fields populated this way can be 1 or several levels deep
+
+    ### Similar Parameter Syntax Examples
+
+    | **Example parameter syntax** | 
+    |------------------------------|
+    | `populate=role`              |
+    | `populate[role]=true`        |
+    | `populate[role]=*`           |
+
+    **Example Request:**
+
+    ```http
+    GET /api/User/SimplePopulation?populate=role
+    ```
+
+    **Example Response:**
+    ```json
+    [
+        {
+            "name": "John Doe",
+            "email": "john.doe@example.com",
+            "userName": "johndoe123",
+            "password": "Password@123",
+            "status": 1,
+            "id": "74850000-9961-b42e-a80d-08dd1e75109d",
+            "createdAt": "2024-12-17T08:30:29.463949+00:00",
+            "role": {
+                "name": "Admin",
+                "description": "Administrator role with full access",
+                "id": "74850000-9961-b42e-baae-08dd1e75109d",
+                "createdAt": "2024-12-17T08:30:29.525732+00:00"
+            }
+        },
+        ...
+    ]
+    ```
+
+    ### Populate fields and relationships at a depth greater than 1 level
+
+    **Similar Parameter Syntax Examples**
+
+    |        **Example parameter syntax**         | 
+    |---------------------------------------------|
+    | `populate[role][populate]=permissions`      |
+    | `populate[role][populate][permissions]=true`|
+    | `populate[role][populate][permissions]=*`   |
+
+
+<br>
+    > ⚠️ **Note:**  
+    > Documentation for **Filters, Search, Sort, and Paging** is still under development.  
+    > In the meantime, you can refer to the relevant sections in [Strapi Documentation](https://docs.strapi.io/dev-docs/api/rest).
+</br>
 
 ## Contributing
 
@@ -389,8 +553,6 @@ Population.NET seamlessly integrates with:
 
 - [AutoMapper](https://automapper.org/)
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
-- [MassTransit](https://masstransit-project.com/)
-- [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle)
 
 ---
 
