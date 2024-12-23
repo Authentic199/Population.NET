@@ -6,7 +6,13 @@
 
 # What is Population.NET?
 
-Population.NET is a .NET library designed to simplify complex data manipulation and querying operations. Inspired by the [Populate feature of Strapi in Node.js](https://docs.strapi.io/dev-docs/api/rest/populate-select), it offers robust tools for sorting, filtering, and projecting data, enabling efficient handling of large datasets. With Population.NET, you can seamlessly build powerful and optimized APIs to meet the demands of modern applications.
+**Population.NET** is a .NET library designed to optimize data retrieval from the server, maximizing performance when clients make API calls. It allows **clients to specify the exact fields they need**, reducing unnecessary data transfer by avoiding the retrieval of all fields by default.  
+
+Inspired by the [populate feature in Strapi for Node.js](https://docs.strapi.io/dev-docs/api/rest/populate-select), Population.NET brings similar capabilities to .NET, enhancing API flexibility and efficiency.  
+
+Additionally, the library includes essential data manipulation features such as **filters, search, sort, and paging**, all designed to handle complex data types like objects and collections.  
+
+With **Population.NET**, you can effortlessly build powerful and efficient APIs that meet the demands of modern applications.
 
 ## Main Features
 
@@ -36,14 +42,14 @@ or
 Add the following package reference to your project file:
 
 ```xml
-<PackageReference Include="Population.NET" Version="1.1.2" />
+<PackageReference Include="Population.NET" Version="1.1.3" />
 ```
 
 ### Using .NET CLI
 Alternatively, install it via the .NET CLI:
 
 ```bash
-dotnet add package Population.NET --version 1.1.2
+dotnet add package Population.NET --version 1.1.3
 ```
 
 ---
@@ -52,13 +58,13 @@ dotnet add package Population.NET --version 1.1.2
 
 To use **Population.NET**, ensure the following requirements are met:
 
-1. **Using .NET 8 or higher**  
+1. **Using .NET 8 or higher:**  
    Make sure your project is targeting **.NET 8** or a newer version. You can set the target framework in your `.csproj` file:
 
    ```xml
    <TargetFramework>net8.0</TargetFramework>
 
-2. **AutoMapper Configuration**
+2. **AutoMapper Configuration:**
    Configure AutoMapper in your project to handle object mapping. Below is a simple example of how to set up AutoMapper:
    
     ```csharp
@@ -92,6 +98,16 @@ To use **Population.NET**, ensure the following requirements are met:
 
 ---
 
+## 🎉 Example Project!
+
+To help you get started with **Population.NET**, we have prepared an example project that demonstrates its key features and best practices.  
+
+> 📥 **Download or clone the project now from GitHub:**  
+
+🔗 **[Example-Population GitHub Repository](https://github.com/Authentic199/Example-Population)**  
+
+---
+
 ## 🚀 Usage Example
 
 1. **Built-in BaseEntity Support**
@@ -110,183 +126,8 @@ To use **Population.NET**, ensure the following requirements are met:
         public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     }
     ```
-
- > **Note:** Before diving into the next steps, let's create the necessary **models** and their corresponding **response DTOs**.
-
-- **Create Models**
-
-    ```csharp
-    public class User : BaseEntity
-    {
-        public string Name { get; set; } = default!;
-
-        public string Email { get; set; } = default!;
-
-        public string UserName { get; set; } = default!;
-
-        public string Password { get; set; } = default!;
-
-        public UserOperationStatus Status { get; set; } = UserOperationStatus.Active;
-
-        public Guid RoleId { get; set; }
-
-        public Role? Role { get; set; }
-    }
-
-    public enum UserOperationStatus
-    {
-        /// <summary>
-        /// Active
-        /// </summary>
-        Active = 1,
-
-        /// <summary>
-        /// Locked
-        /// </summary>
-        Locked = 2,
-    }
-    ```
-
-    ```csharp
-    public class Role : BaseEntity
-    {
-        public string Name { get; set; } = default!;
-
-        public string? Description { get; set; }
-
-        public ICollection<User> Users { get; set; } = default!;
-
-        public ICollection<Permission> Permissions { get; set; } = default!;
-    }
-    ```
-
-    ```csharp
-    public class Permission : BaseEntity
-    {
-        public string Code { get; set; } = default!;
-
-        public string Name { get; set; } = default!;
-
-        public Guid RoleId { get; set; }
-
-        public Role? Role { get; set; }
-    }
-
-    ```
-- **Create response DTOs**
-    ```csharp
-    public class UserResponse : BaseEntity
-    {
-        public string Name { get; set; } = default!;
-
-        public string Email { get; set; } = default!;
-
-        public string UserName { get; set; } = default!;
-
-        public string Password { get; set; } = default!;
-
-        public UserOperationStatus Status { get; set; } = UserOperationStatus.Active;
-
-        public RoleResponse? Role { get; set; }
-    }
-    ```
-    
-    ```csharp
-    public class RoleResponse : BaseEntity
-    {
-        public string Name { get; set; } = default!;
-
-        public string? Description { get; set; }
-
-        public ICollection<PermissionResponse> Permissions { get; set; } = default!;
-    }
-    ```
-
-    
-    ```csharp
-    public class PermissionResponse : BaseEntity
-    {
-        public string Code { get; set; } = default!;
-
-        public string Name { get; set; } = default!;
-    }
-    ```
-
-- **Config mapping**
-
-    ```csharp
-    public class MappingProfile : Profile
-    {
-        public MappingProfile()
-        {
-            CreateMap<User, UserResponse>();
-            CreateMap<Role, RoleResponse>();
-            CreateMap<Permission, PermissionResponse>();
-        }
-    }
-    ```
-
-- **Prepare Test Data**
-
-    Let’s create a simple API for **creating users** and use the provided test data.
-
-    ```csharp
-    [HttpPost]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateUserRequest request)
-    {
-        User user = mapper.Map<User>(request);
-        await context.Users.AddAsync(user);
-        await context.SaveChangesAsync();
-        return Ok();
-    }
-    ```
-
-    **Example JSON Payload**
-
-    ```json
-    {
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "userName": "johndoe123",
-      "password": "Password@123",
-      "status": 1,
-      "role": {
-        "name": "Admin",
-        "description": "Administrator role with full access",
-        "permissions": [
-               {
-                  "code": "READ",
-                  "name": "Read Access"
-               },
-               {
-                  "code": "WRITE",
-                  "name": "Write Access"
-               }
-            ]
-        }
-    }
-    ```
-    
-    ```json
-    {
-       "name": "Jane Smith",
-       "email": "jane.smith@example.com",
-       "userName": "janesmith456",
-       "password": "SecurePass@2024",
-       "status": 1,
-       "role": {
-        "name": "Editor",
-        "description": "Editor role with limited access",
-        "permissions": [
-                {
-                    "code": "UPDATE",
-                    "name": "Update Access"
-                }
-            ]
-        }
-    }
-    ```
----
+> **Note:**  
+> When building entity models using the integrated **BaseEntity**, if the `CompileQueryAsync` extension method is used without specifying sorting, the results will be sorted by **CreatedAt: Desc** by default.
 
 2. **Simple Population**
 
