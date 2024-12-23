@@ -1,5 +1,7 @@
-﻿using Population.Exceptions;
+﻿using MassTransit.Internals;
+using Population.Exceptions;
 using Population.Internal;
+using Population.Public.Attributes;
 using Population.Public.Descriptors;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -119,7 +121,8 @@ internal static class TypeExtension
         || (
              type.IsNullableType() &&
              IsIgnoreSearch(Nullable.GetUnderlyingType(type)!)
-            );
+            )
+        || type.HasAttribute<NotSearchAttribute>();
 
     /// <summary>
     /// Determines whether the specified type represents a primitive type.
