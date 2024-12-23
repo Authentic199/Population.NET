@@ -19,7 +19,7 @@ With **Population.NET**, you can effortlessly build powerful and efficient APIs 
 - [**Built-in BaseEntity Support:**](#-built-in-baseentity-support) Provides a built-in abstract `BaseEntity` class to simplify entity creation
 - [**QueryContext:**](#-querycontext-class) Provides a common **query params** request class for search APIs.
 - [**Simple Population**:](#-simple-population) Easily retrieve and populate data with a simple and intuitive API, inspired by Strapi's populate feature.
-- **Population with Filters, Search, Sort, and Paging**: Combine population capabilities seamlessly with filtering, searching, sorting, and pagination to handle complex data queries efficiently.
+- [**Population with Filters, Search, Sort, and Paging:**](#3-population-with-filters-search-sort-and-paging) Combine population capabilities seamlessly with filtering, searching, sorting, and pagination to handle complex data queries efficiently.
 
 ---
 
@@ -298,7 +298,7 @@ To help you get started with **Population.NET**, we have prepared an example pro
     | `populate[role][populate][permissions]=true`|
     | `populate[role][populate][permissions]=*`   |
 
-## 3. **Population with Filters, Search, Sort, and Paging**
+## 💥 Population with Filters, Search, Sort, and Paging
 
 - [**Example usage**](#example-usage)
 - [**Pagination**](#pagination)
