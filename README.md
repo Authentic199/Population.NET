@@ -16,7 +16,7 @@ With **Population.NET**, you can effortlessly build powerful and efficient APIs 
 
 ## Main Features
 
-- [**Built-in BaseEntity Support**](#1-built-in-baseentity-support): Provides a built-in abstract `BaseEntity` class to simplify entity creation
+- [**Built-in BaseEntity Support:**](#built-in-baseentity-support) Provides a built-in abstract `BaseEntity` class to simplify entity creation
 - **QueryContext**: Provides a common **query params** request class for search APIs.
 - **Simple Population**:  Easily retrieve and populate data with a simple and intuitive API, inspired by Strapi's populate feature.
 - **Population with Filters, Search, Sort, and Paging**: Combine population capabilities seamlessly with filtering, searching, sorting, and pagination to handle complex data queries efficiently.
@@ -46,7 +46,6 @@ Add the following package reference to your project file:
 ```
 
 ### Using .NET CLI
-Alternatively, install it via the .NET CLI:
 
 ```bash
 dotnet add package Population.NET --version 1.1.3
@@ -108,8 +107,8 @@ To help you get started with **Population.NET**, we have prepared an example pro
 
 ---
 
-# 🚀 Usage Example
-## 1.Built-in BaseEntity Support
+## 🚀 Usage Example
+### Built-in BaseEntity Support
 
 **Population.NET** provides a built-in abstract `BaseEntity` class to simplify entity creation. It supports automatic ID generation and creation timestamps.
     
