@@ -42,13 +42,13 @@ or
 Add the following package reference to your project file:
 
 ```xml
-<PackageReference Include="Population.NET" Version="1.1.3" />
+<PackageReference Include="Population.NET" Version="1.8.1" />
 ```
 
 ### Using .NET CLI
 
 ```bash
-dotnet add package Population.NET --version 1.1.3
+dotnet add package Population.NET --version 1.8.1
 ```
 
 ---
@@ -445,5 +445,3 @@ Population.NET seamlessly integrates with:
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
 
 ---
-
-*For more detailed documentation and examples, refer to the official documentation.*
