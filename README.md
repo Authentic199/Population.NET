@@ -108,24 +108,23 @@ To help you get started with **Population.NET**, we have prepared an example pro
 
 ---
 
-## 🚀 Usage Example
+# 🚀 Usage Example
+## 1.Built-in BaseEntity Support
 
-1. **Built-in BaseEntity Support**
-
-    **Population.NET** provides a built-in abstract `BaseEntity` class to simplify entity creation. It supports automatic ID generation and creation timestamps.
+**Population.NET** provides a built-in abstract `BaseEntity` class to simplify entity creation. It supports automatic ID generation and creation timestamps.
     
-    ```csharp
-    public abstract class BaseEntity : BaseEntity<Guid>, IGuidIdentify
-    {
-        protected BaseEntity() => Id = NewId.Next().ToGuid();
-    }
+```csharp
+public abstract class BaseEntity : BaseEntity<Guid>, IGuidIdentify
+{
+    protected BaseEntity() => Id = NewId.Next().ToGuid();
+}
 
-    public abstract class BaseEntity<TId> : IEntity<TId>
-    {
-        public TId Id { get; set; } = default!;
-        public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
-    }
-    ```
+public abstract class BaseEntity<TId> : IEntity<TId>
+{
+    public TId Id { get; set; } = default!;
+    public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+}
+```
 > **Note:**  
 > When building entity models using the integrated **BaseEntity**, if the `CompileQueryAsync` extension method is used without specifying sorting, the results will be sorted by **CreatedAt: Desc** by default.
 
