@@ -9,8 +9,12 @@ internal class StringConvertVisitor(MemberInfo baseMember) : ExpressionVisitor
 {
     protected override Expression VisitMember(MemberExpression node)
     {
-        if (node.Member.Name == baseMember.Name
-            && node.Member.ResolveMemberType().GetUnderlyingType() == baseMember.ResolveMemberType().GetUnderlyingType()
+        if (
+            (
+                (node.Member.Name == baseMember.Name && node.Member.ResolveMemberType().GetUnderlyingType() == baseMember.ResolveMemberType().GetUnderlyingType())
+                ||
+                (node.Expression?.Type.IsCollection() == true && node.Member.Name == nameof(ICollection<string>.Count) && node.Member.MemberType is MemberTypes.Property)
+            )
             && CallToString(node) is MethodCallExpression expression)
         {
             return expression;
