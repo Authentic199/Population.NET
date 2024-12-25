@@ -202,7 +202,8 @@ To help you get started with **Population.NET**, we have prepared an example pro
         | Select populate and fields | `populate[Role][fields]=name`                   |
 
 
-        > [!NOTE] Field selection does not work on relational. To populate these fields, use the `populate` parameter.
+    > [!NOTE]
+    > Field selection does not work on relational. To populate these fields, use the `populate` parameter.
 
 
     **Example Request: Return only name, description, Role.Name fields**
