@@ -202,7 +202,7 @@ To help you get started with **Population.NET**, we have prepared an example pro
         | Select populate and fields | `populate[Role][fields]=name`                   |
 
 
-        > [!Note] Field selection does not work on relational. To populate these fields, use the `populate` parameter.
+        > [!NOTE] Field selection does not work on relational. To populate these fields, use the `populate` parameter.
 
 
     **Example Request: Return only name, description, Role.Name fields**
@@ -270,14 +270,14 @@ To help you get started with **Population.NET**, we have prepared an example pro
     ]
     ```
 
-    > [!Note]
+    > [!NOTE]
     > If your data includes additional relationships beyond `role`, such as `organization`, or `groups` using the `populate=*` parameter will also include those relationships as long as they are at a depth of 1
 
     #### 🔥 4. Populate specific relations and fields
 
     You can also `populate` specific relations and fields, by explicitly defining what to populate. This requires that you know the name of fields and relations to populate.
 
-    > [!Note]
+    > [!NOTE]
     > Relations and fields populated this way can be 1 or several levels deep
 
     #### Populate fields and relationships at 1 level deep
@@ -289,7 +289,7 @@ To help you get started with **Population.NET**, we have prepared an example pro
     | `populate[role]=*`             |
     | `populate[Role][fields]=name`  |
 
-    > [!Note]
+    > [!NOTE]
     > The first three lines have different syntax but the same result.
 
     #### Populate fields and relationships at a depth greater than 1 level
@@ -352,7 +352,7 @@ To help you get started with **Population.NET**, we have prepared an example pro
     GET /api/User/PopulationWithDataManipulation?search[keyword]=Jane&search[fields]=userName&search[fields]=email
     ```
 
-    > [!Note] 
+    > [!NOTE] 
     > If a search keyword is used but no specific search fields are provided, the search will apply to all selected fields **except** for fields of the following types:  
     > - `Enum`  
     > - `Guid`  
@@ -371,7 +371,7 @@ To help you get started with **Population.NET**, we have prepared an example pro
     GET /api/User/PopulationWithDataManipulation?sort[0]=createdAt:asc&sort[1]=name:desc
     ```
 
-    > [!Note]
+    > [!NOTE]
     > `:asc` is default order, can be omitted
 
     ### Filtering
@@ -418,7 +418,8 @@ To help you get started with **Population.NET**, we have prepared an example pro
 
     <br>
 
-    >[!Note]: `null` operator is not available at the moment
+    > [!NOTE]
+    > `null` operator is not available at the moment
 
 
 ## Contributing
