@@ -124,8 +124,8 @@ To help you get started with **Population.NET**, we have prepared an example pro
         public virtual DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
     }
    ```
-   > [!Note:]  
-   > When building entity models using the integrated **BaseEntity**, if the `CompileQueryAsync` extension method is used without specifying sorting, the results will be sorted by **CreatedAt: Desc** by default.
+> [!Note:]  
+> When building entity models using the integrated **BaseEntity**, if the `CompileQueryAsync` extension method is used without specifying sorting, the results will be sorted by **CreatedAt: Desc** by default.
 
 ### 💥 QueryContext Class
    A common **query params** request class, using for APIs integrate with Population.NET
